@@ -85,11 +85,17 @@ BEGIN
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
--- The Trigger: Tells the DB to run the function after an INSERT
+-- Second: The Trigger (Link it to the table)
 CREATE TRIGGER trg_car_arrival
 AFTER INSERT ON sensor_events
 FOR EACH ROW
 EXECUTE FUNCTION update_spot_on_arrival();
+--+++
+SELECT trigger_name, event_manipulation, event_object_table, action_statement
+FROM information_schema.triggers
+WHERE event_object_table = 'sensor_events';
+INSERT INTO sensor_events (spot_id, entry_time) VALUES (10, NOW());
+SELECT * FROM spots WHERE spot_id = 10;
 
 
 -- The Function: Create a permit_issuance function. It should check 
@@ -123,7 +129,7 @@ $$ LANGUAGE plpgsql;
 CREATE OR REPLACE PROCEDURE generate_tickets()
 AS $$
 BEGIN
-    INSERT INTO tickets (license_plate, violation_reason, fine_amount, is_paid)
+    INSERT INTO tickets (license_plate, violation_reason, amount, is_paid)
     SELECT v.license_plate, 'Overtime Parking', 50.00, FALSE
     FROM reservations r
     JOIN vehicles v ON r.user_id = v.owner_id
