@@ -4,8 +4,7 @@
     passwords, container names, we can do that.
 3. Make sure you've navigated to the correct directory in the terminal and then run the command: 
     docker-compose stop. This creates the neccessary containers for the project
-4. #### label1
-    Then to connect and create a server for the database:
+4. Then to connect and create a server for the database:{#web-browser-setup}
     - Open your prefered browser and type this in the url: http://localhost:8080
     - Log in with the credentials in the pgAdmin section
     - Click "Add New Server":
@@ -22,4 +21,4 @@
 ### To run the docker
 1. In your bash linux system, navigate into the folder where you can see all these files (createDDL.sql, docker-compose.yml, ...transaction.sql)
 2. Then run this command <code>docker-compose up -d</code>, which will then start up the docker environment, that way you can connect to it via the web browser using the credentials in docker-compose.yml
-3. After running the command above, go to your web browser follow [these directions][label1]
+3. After running the command above, go to your web browser follow [these directions](#web-browser-setup)
