@@ -5,7 +5,7 @@
 3. Make sure you've navigated to the correct directory in the terminal and then run the command: 
     docker-compose stop. This creates the neccessary containers for the project
 4. {#web-browser-setup}Then to connect and create a server for the database:
-    - Open your prefered browser and type this in the url: http://localhost:8080
+    - Open your prefered browser and type this in the url: http://localhost:8080{#web-browser-setup}
     - Log in with the credentials in the pgAdmin section
     - Click "Add New Server":
         - enter "UMBC Parking System" for name
