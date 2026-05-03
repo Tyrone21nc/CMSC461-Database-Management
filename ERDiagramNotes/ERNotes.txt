@@ -1,0 +1,68 @@
+Date: 3/14/26
+Author: Romain Dzeinse
+Description: Setting up notes for creating an ER diagram. These notes will include entities for the project and related information
+
+NOTE: 
+
+
+Relavant Entities for the Parking Database (DB):
+1. Car
+    - Entity details
+        - car_id (PK = Primary Key, value to identify a specific instance of the car entity; this value can never change hence always returning the same output)
+        - make
+        - model
+        - owner name
+        - color
+        - license plate
+        - car body (sedan, pick-up truck, motocycle, suv, etc.)
+        - date added (date car was added to DB)
+    - Relation to User:
+        - one and only one
+    - Relation to Parking Spot:
+        - zero or many
+2. Parking Spot
+    - Entity details
+        - parking area name (like parking lot A, B, ...)
+        - parking #
+        - parking size (certain sizes won't allow certain vehicles of certain bodies to fit in)
+        - is_active
+    - Relation to Car
+        -  zero many (parking spot can have zero or many cars)
+3. User
+    - Entity details
+        - user type (can be student, staff, and visitor)
+        - first name
+        - last name
+        - car amount
+        - car(s) plate # (can be a collection, if has many cars in the system)
+        - has_parked_car (if true, it means it cannot have another parked car)
+        - has_fine(s)
+    - Relation to Car
+        - zero or more
+    - Relation to Payment transaction:
+        - zero or more
+    - Relation to Notification messaging
+        - zero or more
+4. Payment transaction
+    - Entity details
+        - owner of payment
+        - payment_id
+        - payment amount
+        - payment issue date
+        - payment due date
+        - is_fine_notified
+    - Relation to Notification messaging
+        - zero or many
+    - Relation to User
+        - zero or many
+5. Notification messaging
+    - Entity details
+        - name_notification_sent_to (who it was sent to)
+        - notification_id
+        - notification sent date
+    - Relation to Payment transaction
+        - zero or many
+    - Relation to User
+        - zero or many
+
+
