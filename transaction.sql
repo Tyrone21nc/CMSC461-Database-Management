@@ -12,13 +12,12 @@ COMMIT;
 -- ==========================================================
 -- TRANSACTION 2: THE CONFLICTING REQUEST (Session B)
 -- ==========================================================
--- Start a transaction
+-- Starting another transaction
 BEGIN;
-
--- Try to check the SAME spot while Session A is still "thinking"
+-- Try to check the same spot while Session A is still there
 SELECT current_status FROM spots WHERE spot_id = 1 FOR UPDATE; 
--- NOTE: This query will HANG (wait) until Session A runs COMMIT or ROLLBACK.
+-- NOTE: This query will wait until Session A runs "commit" or "rollback".
 
--- Once it unfreezes, it will see the spot is now 'Occupied' 
--- and your application logic should prevent the second booking.
+-- Then after the wait/pause period, it will say 'Occupied' 
+-- and the application logic should prevent the second booking.
 ROLLBACK;

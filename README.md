@@ -21,4 +21,11 @@
 ### To run the docker
 1. In your bash linux system, navigate into the folder where you can see all these files (createDDL.sql, docker-compose.yml, ...transaction.sql)
 2. Then run this command <code>docker-compose up -d</code>, which will then start up the docker environment, that way you can connect to it via the web browser using the credentials in docker-compose.yml
-3. After running the command above, go to your web browser follow [these directions](#web-browser-setup)
+3. After running the command above, go to your web browser follow [these directions] (in step 4 above)(#web-browser-setup)
+4. Open up a query tool in the browser and run the code in these files in order:
+    1. smoke_test.sql
+    2. loadAll.sql
+    3. queryAll.sql
+    4. indexAll.sql
+    5. transaction.sql
+
