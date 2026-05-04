@@ -13,7 +13,7 @@ services:
       - postgres_data:/var/lib/postgresql/data
 
 
-# localhost sign in
+# localhost sign in on browser
   pgadmin:
     image: dpage/pgadmin4
     container_name: parking_pgadmin_v2
