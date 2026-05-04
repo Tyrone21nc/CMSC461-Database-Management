@@ -52,7 +52,7 @@ LEFT JOIN tickets t ON u.full_name LIKE '%' -- Intentionally inefficient join
 ORDER BY se.entry_time DESC;
 
 -- (10)Revenue Projection -> Complex math in a GROUP BY over multiple years.
-SELECT EXTRACT(YEAR FROM entry_time), lot_id, AVG(event_id) * COUNT(*) 
+SELECT EXTRACT(YEAR FROM entry_time), spot_id, AVG(event_id) * COUNT(*) 
 FROM sensor_events 
 GROUP BY 1, 2;
 
