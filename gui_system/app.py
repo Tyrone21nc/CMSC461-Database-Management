@@ -14,9 +14,14 @@ port = "5432"
 
 # We first need to connect to the DB
 def get_connection():
-    return psycopg2.connect(
-        host="localhost", database="parking_system", user="admin", password="password123", port="5432"
-    )
+    try:
+        conn = psycopg2.connect(
+            host=host, database=database, user=user, password=password, port=port
+        )
+        return conn
+    except Exception as e:
+        st.error(f"Database Connection Failed: {e}")
+        return None
 
 
 # The tile for the GUI page
@@ -34,11 +39,11 @@ if choice == "Dashboard":
     st.write("You selected:", choice)
     st.subheader("Current Lot Availability")
     conn = get_connection()     # open the connection
-    st.write("Before the more things")
-    df = pd.read_sql("SELECT * FROM View_CurrentAvailability", conn)    # create the dataframe, df
-    st.table(df) # then run the df on using the table function in streamlit
-    st.write("More things")
-    conn.close()                # close the connection when done
+    # st.write("Before the more things")
+    # df = pd.read_sql("SELECT * FROM View_CurrentAvailability", conn)    # create the dataframe, df
+    # st.table(df) # then run the df on using the table function in streamlit
+    # st.write("More things")
+    # conn.close()                # close the connection when done
 elif choice == "Issue Permit":
     st.write("Page for Issueing permits")
 elif choice == "Simulate Sensor":
