@@ -6,6 +6,7 @@ import pandas as pd
 # Database info
 # this information is found in docker-compose.yml in the services section
 host = "localhost"
+host = "8080"
 database = "parking_system"
 user = "admin"
 password = "password123"
