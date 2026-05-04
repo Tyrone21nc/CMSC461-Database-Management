@@ -5,12 +5,11 @@ import pandas as pd
 
 # Database info
 # this information is found in docker-compose.yml in the services section
-host = "localhost"
-host = "8080"
+host = "127.0.0.1"
 database = "parking_system"
 user = "admin"
 password = "password123"
-port = "5432"
+port = "5433"
 
 
 # We first need to connect to the DB
@@ -40,11 +39,12 @@ if choice == "Dashboard":
     st.write("You selected:", choice)
     st.subheader("Current Lot Availability")
     conn = get_connection()     # open the connection
-    # st.write("Before the more things")
-    # df = pd.read_sql("SELECT * FROM View_CurrentAvailability", conn)    # create the dataframe, df
-    # st.table(df) # then run the df on using the table function in streamlit
-    # st.write("More things")
-    # conn.close()                # close the connection when done
+    st.write("Before the more things")
+    print("no more")
+    df = pd.read_sql("SELECT * FROM View_CurrentAvailability", conn)    # create the dataframe, df
+    st.table(df) # then run the df on using the table function in streamlit
+    st.write("More things")
+    conn.close()                # close the connection when done
 elif choice == "Issue Permit":
     st.write("Page for Issueing permits")
 elif choice == "Simulate Sensor":
