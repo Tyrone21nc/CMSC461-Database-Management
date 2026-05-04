@@ -30,5 +30,14 @@ choice = st.sidebar.selectbox("Navigation", menu)
 
 # Dashboard logic
 if choice == "Dashboard":
-    print("hello world")
+    st.write("The dashboard page")
+    st.write("You selected:", choice)
+elif choice == "Issue Permit":
+    st.write("Page for Issueing permits")
+elif choice == "Simulate Sensor":
+    st.write("Simulating Sensors")
+elif choice == "Tickets":
+    st.write("Page for showing tickets")
+else:
+    st.write("This is the wrong page, enter the correct navigation section name")
 
