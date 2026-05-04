@@ -91,11 +91,11 @@ AFTER INSERT ON sensor_events
 FOR EACH ROW
 EXECUTE FUNCTION update_spot_on_arrival();
 --+++
-SELECT trigger_name, event_manipulation, event_object_table, action_statement
-FROM information_schema.triggers
-WHERE event_object_table = 'sensor_events';
-INSERT INTO sensor_events (spot_id, entry_time) VALUES (10, NOW());
-SELECT * FROM spots WHERE spot_id = 10;
+-- SELECT trigger_name, event_manipulation, event_object_table, action_statement
+-- FROM information_schema.triggers
+-- WHERE event_object_table = 'sensor_events';
+-- INSERT INTO sensor_events (spot_id, entry_time) VALUES (10, NOW());
+-- SELECT * FROM spots WHERE spot_id = 10;
 
 
 -- The Function: Create a permit_issuance function. It should check 

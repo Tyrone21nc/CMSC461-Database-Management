@@ -1,9 +1,9 @@
 -- (1)Total Revenue -> sum of all paid tickets from everyone
 -- we want to make sure we select only where is_paid is set to TRUE
-SELECT SUM(fine_amount) as total_revenue FROM tickets WHERE is_paid = TRUE;
+SELECT SUM(amount) as total_revenue FROM tickets WHERE is_paid = TRUE;
 
 -- (2)Lot Popularity -> Count the number of reservations per parking lot area
-SELECT l.lot_name, COUNT(r.reservation_id) 
+SELECT l.lot_name, COUNT(r.res_id) 
 FROM lots l JOIN spots s ON l.lot_id = s.lot_id 
 JOIN reservations r ON s.spot_id = r.spot_id 
 GROUP BY l.lot_name;
@@ -45,7 +45,7 @@ WHERE lot_id NOT IN (SELECT lot_id FROM spots WHERE current_status = 'Occupied')
 SELECT * FROM vehicles WHERE make_model LIKE '%Toyota%Camry%';
 
 -- (9)Full Audit Trail -> A massive join with a sort on a non-indexed timestamp.
-SELECT u.full_name, se.entry_time, se.exit_time, t.fine_amount
+SELECT u.full_name, se.entry_time, se.exit_time, t.amount
 FROM users u
 CROSS JOIN sensor_events se 
 LEFT JOIN tickets t ON u.full_name LIKE '%' -- Intentionally inefficient join
