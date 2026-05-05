@@ -35,15 +35,11 @@ choice = st.sidebar.selectbox("Navigation", menu)
 
 # Dashboard logic
 if choice == "Dashboard":
-    st.write("The dashboard page")
-    st.write("You selected:", choice)
-    st.subheader("Current Lot Availability")
+    # st.write("The dashboard page")
     conn = get_connection()     # open the connection
-    st.write("Before the more things")
-    print("no more")
-    df = pd.read_sql("SELECT * FROM View_CurrentAvailability", conn)    # create the dataframe, df
+    st.write("The number represents the number of free spots in that parking lot")
+    df = pd.read_sql("SELECT * FROM View_CurrentAvailability;", conn)    # create the dataframe, df
     st.table(df) # then run the df on using the table function in streamlit
-    st.write("More things")
     conn.close()                # close the connection when done
 elif choice == "Issue Permit":
     st.write("Page for Issueing permits")
