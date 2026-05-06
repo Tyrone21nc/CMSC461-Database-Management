@@ -8,7 +8,8 @@ INSERT INTO users (full_name, email, user_type) VALUES
 ('Eve Adams', 'eve@umbc.edu', 'Visitor'),
 ('Frank Wright', 'frank@umbc.edu', 'Admin'),
 ('Grace Hopper', 'grace@umbc.edu', 'Faculty'),
-('Hank Hill', 'hank@umbc.edu', 'Student');
+('Hank Hill', 'hank@umbc.edu', 'Student'),
+('Jimmy Johns', 'jjohns@umbc.edu', 'Student');
 
 INSERT INTO lots (lot_name, zone_type) VALUES 
 ('Commons Lot', 'Student'), 
@@ -56,7 +57,8 @@ INSERT INTO permits (license_plate, expiry_date, permit_type) VALUES
 ('STU-901', '2026-12-31', 'Commuter'), 
 ('VWX-234', '2026-12-31', 'Residential'),
 ('ABC-123', '2025-01-01', 'EXPIRED_TEST'), 
-('XYZ-987', '2027-01-01', 'Faculty');
+('XYZ-987', '2027-01-01', 'Faculty'),
+('VWX-234', '2026-05-30', 'Commuter');
 
 INSERT INTO reservations (user_id, spot_id, start_time, end_time) VALUES 
 (3, 4, '2026-04-05 10:00:00', '2026-04-05 12:00:00'),
