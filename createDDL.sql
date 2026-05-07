@@ -14,7 +14,7 @@ CREATE TABLE vehicles (
 CREATE TABLE lots (
     lot_id SERIAL PRIMARY KEY,
     lot_name VARCHAR(50) NOT NULL,
-    zone_type VARCHAR(20) NOT NULL,
+    zone_type VARCHAR(20) NOT NULL
     -- lot_amount INTEGER,      -> this feature is optional, I want to add it but will need to modify a lot to make this work
 );
 

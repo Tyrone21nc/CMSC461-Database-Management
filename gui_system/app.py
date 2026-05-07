@@ -32,7 +32,7 @@ st.title("UMBC Parking Database System")
 menu = ["Dashboard", "Issue Permit", "Simulate Sensor", "Tickets", "Add students to DB"]
 choice = st.sidebar.selectbox("Navigation", menu)
 
-#Query key characters
+# Query key characters
 SELECT = "SELECT"
 FROM = "FROM"
 users__ = "users"
@@ -44,6 +44,8 @@ payments__ = "payments"
 tickets__ = "tickets"
 permits__ = "permits"
 
+# variables for if statements
+conn = ""
 
 # Dashboard logic
 if choice == "Dashboard":
