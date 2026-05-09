@@ -56,25 +56,14 @@ if choice == "Dashboard":
 
     # df = pd.read_sql("SELECT * FROM View_CurrentAvailability;", conn)    # create the dataframe, df
     # st.table(df) # then run the df on using the table function in streamlit
-    st.subheader("All users")
+    st.subheader(":blue[All users]")
     st.write("All users in DB")
     df2 = pd.read_sql(f"{SELECT} * {FROM} {users__}", conn)
     st.table(df2)
 
-    # count1 = pd.read_sql(f"{SELECT} COUNT(*) as total {FROM} {users__} WHERE user_type='Student';", conn)
-    # st.subheader(f"STUDENTS: {count1}")
-    # df3 = pd.read_sql(f"{SELECT} * {FROM} {users__} WHERE user_type='Student';", conn)
-    # st.table(df3)
-    # df4 = pd.read_sql(f"{SELECT} * {FROM} {users__} WHERE user_type='Faculty';", conn)
-    # st.table(df4)
-    # df5 = pd.read_sql(f"{SELECT} * {FROM} {users__} WHERE user_type='Visitor';", conn)
-    # st.table(df5)
-    # df6 = pd.read_sql(f"{SELECT} * {FROM} {users__} WHERE user_type='Admin';", conn)
-    # st.table(df6)
-
-
     conn.close()                # close the connection when done
 elif choice == "Issue Permit":
+    st.subheader(":blue[Issueing permits]")
     st.write("Page for Issueing permits")
     conn = get_connection()
     df = pd.read_sql("SELECT * FROM permits;", conn)
@@ -86,8 +75,8 @@ elif choice == "Issue Permit":
 
 
 elif choice == "Simulate Sensor":
+    st.subheader(":blue[Simulate Vehicle Arrival]")
     st.write("Simulating Sensors")
-    st.subheader("Simulate Vehicle Arrival")
     spot_id = st.number_input("Enter Spot ID", min_value=1)
     if st.button("Car Arrived"):
         conn = get_connection()
@@ -96,10 +85,24 @@ elif choice == "Simulate Sensor":
         conn.commit()
         st.success(f"Sensor logged for Spot {spot_id}. Trigger updated DB!")
         conn.close()
+    # show sensor_events table
+    st.write("**:green[Reload page] to see the updated sensor_events table**")
+    conn = get_connection()
+    df = pd.read_sql("SELECT * FROM sensor_events;", conn)
+    st.table(df)
+
+    conn.close()
+
+
 elif choice == "Tickets":
-    st.write("Page for showing tickets")
+    st.subheader(":blue[Page for showing tickets]")
+    conn = get_connection()
+    df = pd.read_sql("SELECT * FROM tickets;", conn)
+    st.write("All tickets and paid status")
+    st.table(df)
+    conn.close()
 elif choice == "Add users to DB":
-    st.subheader("To adding students to the database")
+    st.subheader(":blue[To adding users to the database]")
     
     # form info
     submit_btn = ""
