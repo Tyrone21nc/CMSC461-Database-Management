@@ -1,0 +1,4 @@
+To run in the terminal of a Chromebook (in ChromeOS):
+    - sudo docker compose up -d
+To close/pause the container on ChromeOS (will conserve the data)
+    - sudo docker compose stop
