@@ -9,6 +9,7 @@ services:
       POSTGRES_DB: parking_system
     ports:
       - "5433:5432"
+      # on the website, make sure to set port to 5432 not 5433
     volumes:
       - postgres_data:/var/lib/postgresql/data
 

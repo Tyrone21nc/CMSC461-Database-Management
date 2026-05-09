@@ -53,6 +53,12 @@ if choice == "Dashboard":
     conn = get_connection()     # open the connection
     st.subheader("Available Spots")
     st.write("The number represents the number of free spots in that parking lot")
+
+    df2 = pd.read_sql("SELECT * FROM users", conn)
+    st.table(df2)
+
+
+
     df = pd.read_sql("SELECT * FROM View_CurrentAvailability;", conn)    # create the dataframe, df
     st.table(df) # then run the df on using the table function in streamlit
     st.subheader("All users")
