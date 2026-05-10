@@ -29,3 +29,9 @@
     4. indexAll.sql
     5. transaction.sql
 
+
+### Demo Video (which you can also find in the readme under the gui_system director
+**This is the demo video of the gui version**
+[Screen recording 2026-05-09 8.08.43 PM.webm](https://github.com/user-attachments/assets/e7f5ad48-39e0-4645-b043-61063693da20)
+
+
