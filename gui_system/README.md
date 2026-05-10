@@ -17,6 +17,9 @@
         - <code>python -m streamlit run app.py</code>
 3. Then you can interact with the web browser on your localhost on your browser
 
+## Demo Video
+[Screen recording 2026-05-09 8.08.43 PM.webm](https://github.com/user-attachments/assets/23eacbf1-8759-4350-93f2-6ab95dfb91ba)
+
 
 
 
