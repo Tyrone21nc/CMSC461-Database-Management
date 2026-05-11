@@ -119,7 +119,7 @@ elif choice == "Add users to DB":
             if conn:
                 cur = conn.cursor()
                 insert_query = """
-                    INSERT INTO users (full_name, email, user_type) 
+                    INSERT INTO users (full_name, email, user_type)
                     VALUES (%s, %s, %s);
                 """
                 data_to_insert = (name, email, user_type)
