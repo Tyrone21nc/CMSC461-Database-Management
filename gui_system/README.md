@@ -15,6 +15,7 @@
     - <code>streamlit run app.py</code> -> this will run the app on your terminal
         - If it doesn't work and you get an error like, <code>streamlit: command not found</code>, then try this instead
         - <code>python -m streamlit run app.py</code>
+        - <code>python3 -m streamlit run app.py</code> -> for chromeOS or mac
 3. Then you can interact with the web browser on your localhost on your browser
 
 
