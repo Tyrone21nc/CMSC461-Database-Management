@@ -170,7 +170,6 @@ elif choice == "Add users to DB":
                 st.success(f"User {name} successfully added to the database!")
                 cur.close()
                 conn.close()
-# Only commited on my computer
 
 
 

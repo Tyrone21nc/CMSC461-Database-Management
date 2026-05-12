@@ -34,5 +34,4 @@
 [Screen recording 2026-05-09 8.08.43 PM.webm](https://github.com/user-attachments/assets/23eacbf1-8759-4350-93f2-6ab95dfb91ba)
 
 **This is the demo video of the gui version**<br>
-Small change
 
