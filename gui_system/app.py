@@ -29,7 +29,7 @@ st.title("UMBC Parking Database System")
 
 
 # A sidebar (used for navigation)
-menu = ["Dashboard", "Issue Permit", "Simulate Sensor", "Tickets", "Add users to DB"]
+menu = ["Issue Permit", "Dashboard", "Simulate Sensor", "Tickets", "Add users to DB"]
 choice = st.sidebar.selectbox("Navigation", menu)
 
 # Query key characters
@@ -72,6 +72,46 @@ elif choice == "Issue Permit":
     st.table(df)
     st.write(f"There are currently {num_of_permits} permits")
     conn.close()
+    # Allowing the admin to issue a permit
+    #form info
+    submit_btn = ""
+    license_plate = ""
+    exp_date = ""
+    permit_type = ""
+    with st.form("Issue a permit to a user"):
+        license_plate = st.text_input("Enter the license plate number")
+        exp_date = st.text_input("Enter the expiration date")
+        permit_type = st.selectbox("Permit Type", ["", "Commuter", "Residential", "Faculty", "EXPIRED_TEST"])
+        submit_btn = st.form_submit_button("submit permit")
+
+    # retrieve all license plates
+    conn = get_connection()
+    cur = conn.cursor()
+    df = pd.read_sql("SELECT * from vehicles;", conn)
+    # put license plates in a list
+    license_plates_list = []
+    for license_plt in df["license_plate"]:
+        license_plates_list.append(license_plt)
+    # if button has been submitted
+    if submit_btn:
+        # st.write("button submitted yes!")
+        # the license plate, LP, has to first be registered to a car and that car has to be registered to a user_id, which is corresponds to a user
+        # if the license plate is already registered
+        if license_plate in license_plates_list and permit_type:
+            # I'm not going to make the check to see if LP already has a permit because the permit could have been expired and would need a new one. 
+            insert_query = """
+                INSERT INTO permits (license_plate, expiry_date, permit_type)
+                VALUES (%s, %s, %s);
+            """ # to insert we need an insert query
+            permit_to_insert = (license_plate, exp_date, permit_type)
+            st.success(f"Permit with license plate: {license_plate} has been successfully been added", icon="✅")
+            cur.execute(insert_query, permit_to_insert)
+            conn.commit()
+        else:
+            st.error("license plate doesn't exist or invalid permit type", icon="🚨")
+
+    cur.close()
+    conn.close()
 
 
 elif choice == "Simulate Sensor":
@@ -90,7 +130,6 @@ elif choice == "Simulate Sensor":
     conn = get_connection()
     df = pd.read_sql("SELECT * FROM sensor_events;", conn)
     st.table(df)
-
     conn.close()
 
 
@@ -117,6 +156,8 @@ elif choice == "Add users to DB":
         if name and email:  # if name name email are not empty
             conn = get_connection()
             if conn:
+                # to display we only need get_connection()
+                # to do an action, we need cursor and commit on that conection
                 cur = conn.cursor()
                 insert_query = """
                     INSERT INTO users (full_name, email, user_type)
@@ -124,7 +165,7 @@ elif choice == "Add users to DB":
                 """
                 data_to_insert = (name, email, user_type)
                 cur.execute(insert_query, data_to_insert)
-                # 3. CRITICAL: Always commit for INSERT/UPDATE/DELETE
+                # We ALWAYS want to commit for insert, update, and delete (operations that change the data rather than just retrieve it)
                 conn.commit()
                 st.success(f"User {name} successfully added to the database!")
                 cur.close()
